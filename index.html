@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Mariana</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+    
+    <style>
+        /* --- FUENTES E IMPORTACIONES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        /* --- VARIABLES DE DISEÑO --- */
+        :root {
+            --color-fondo: #fdfaf8;
+            --color-texto: #4a4a4a;
+            --color-titulos: #2c2c2c;
+            --color-acento: #C39EA0;
+            --fuente-base: 'Montserrat', sans-serif;
+            --fuente-titulos: 'Cormorant Garamond', serif;
+            --fuente-script: 'Great Vibes', cursive;
+            --color-sobre: #f9f3ea;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--fuente-base);
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+            /* === FONDO DE ROSAS GENERADO POR IA (SVG) === */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M47.5,22.5 C47.5,22.5 50,12.5 57.5,12.5 C65,12.5 67.5,22.5 67.5,22.5 C67.5,22.5 77.5,25 77.5,32.5 C77.5,40 67.5,42.5 67.5,42.5 C67.5,42.5 70,52.5 62.5,52.5 C55,52.5 52.5,42.5 52.5,42.5 C52.5,42.5 42.5,45 42.5,37.5 C42.5,30 52.5,27.5 52.5,27.5 L47.5,22.5 Z' fill='%23C39EA0' fill-opacity='0.08'/%3E%3Cpath d='M52.5,77.5 C52.5,77.5 50,87.5 42.5,87.5 C35,87.5 32.5,77.5 32.5,77.5 C32.5,77.5 22.5,75 22.5,67.5 C22.5,60 32.5,57.5 32.5,57.5 C32.5,57.5 30,47.5 37.5,47.5 C45,47.5 47.5,57.5 47.5,57.5 C47.5,57.5 57.5,55 57.5,62.5 C57.5,70 47.5,72.5 47.5,72.5 L52.5,77.5 Z' fill='%23C39EA0' fill-opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 150px 150px;
+            overflow: hidden; 
+        }
+        
+        /* --- PANTALLAS INICIALES (CONTENEDOR) --- */
+        .pantalla-inicial {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background-color: var(--color-fondo);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M47.5,22.5 C47.5,22.5 50,12.5 57.5,12.5 C65,12.5 67.5,22.5 67.5,22.5 C67.5,22.5 77.5,25 77.5,32.5 C77.5,40 67.5,42.5 67.5,42.5 C67.5,42.5 70,52.5 62.5,52.5 C55,52.5 52.5,42.5 52.5,42.5 C52.5,42.5 42.5,45 42.5,37.5 C42.5,30 52.5,27.5 52.5,27.5 L47.5,22.5 Z' fill='%23C39EA0' fill-opacity='0.08'/%3E%3Cpath d='M52.5,77.5 C52.5,77.5 50,87.5 42.5,87.5 C35,87.5 32.5,77.5 32.5,77.5 C32.5,77.5 22.5,75 22.5,67.5 C22.5,60 32.5,57.5 32.5,57.5 C32.5,57.5 30,47.5 37.5,47.5 C45,47.5 47.5,57.5 47.5,57.5 C47.5,57.5 57.5,55 57.5,62.5 C57.5,70 47.5,72.5 47.5,72.5 L52.5,77.5 Z' fill='%23C39EA0' fill-opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 150px 150px;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 200;
+            transition: opacity 1.2s ease-out;
+            text-align: center;
+        }
+
+        /* 1. PANTALLA PARA PEDIR NOMBRE */
+        #pantalla-nombre h2 { font-family: var(--fuente-script); color: var(--color-acento); font-size: 3rem; margin-bottom: 20px; font-weight: 400; }
+        #nombre-invitado-input {
+            border: none; border-bottom: 2px solid var(--color-acento);
+            background: transparent; font-size: 1.5rem; text-align: center;
+            width: 80%; max-width: 400px; padding: 10px;
+            color: var(--color-texto); font-family: var(--fuente-base);
+        }
+        #nombre-invitado-input:focus { outline: none; }
+        #boton-siguiente {
+            background-color: var(--color-acento); color: white; border: none;
+            padding: 12px 40px; margin-top: 30px; font-size: 1rem;
+            font-family: var(--fuente-base); cursor: pointer; transition: transform 0.3s ease;
+        }
+        #boton-siguiente:hover { transform: scale(1.05); }
+
+        /* 2. PANTALLA DEL SOBRE PERSONALIZADO */
+        #pantalla-sobre { display: none; cursor: pointer; } 
+        #pantalla-sobre .contenido-sobre {
+            font-family: var(--fuente-titulos); color: var(--color-texto);
+        }
+        #pantalla-sobre .icono-sobre { font-size: 5rem; color: var(--color-acento); }
+        #pantalla-sobre p { font-size: 1.5rem; margin-top: 10px; font-weight: 600; }
+        #pantalla-sobre small { font-family: var(--fuente-base); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-texto); }
+
+        /* --- HERO SECTION Y ANIMACIONES DE TEXTO --- */
+        #hero {
+            height: 100vh; width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            color: white; position: relative;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fondo-principal.jpg');
+            background-size: cover; background-position: center;
+        }
+        .hero-text, .boton-ver { 
+            opacity: 0;
+        }
+        #hero.animate .hero-text-1 { animation: fadeInUp 1s ease-out 0.5s forwards; }
+        #hero.animate .hero-text-2 { animation: zoomIn 1.2s ease-out 1s forwards; }
+        #hero.animate .hero-text-3 { animation: fadeInUp 1s ease-out 1.8s forwards; }
+        #hero.animate .boton-ver { animation: fadeInUp 1s ease-out 2.5s forwards; }
+        #hero h1 { font-family: var(--fuente-script); font-size: 8rem; margin: -10px 0; font-weight: 400; text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.7); }
+        #hero p { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.7); }
+        .boton-ver {
+            padding: 12px 30px; border: 2px solid white; color: white;
+            text-decoration: none; margin-top: 30px; font-weight: 500;
+            transition: all 0.3s ease; letter-spacing: 2px;
+        }
+        .boton-ver:hover { background-color: white; color: black; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* --- ESTILOS GENERALES DEL CONTENIDO --- */
+        #main-content { padding: 80px 10%; text-align: center; display: none; }
+        .seccion { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; margin-bottom: 80px; }
+        .seccion.visible { opacity: 1; transform: translateY(0); }
+        h2 { font-family: var(--fuente-script); font-size: 4rem; font-weight:400; color: var(--color-acento); margin-bottom: 10px; }
+        h3 { font-family: var(--fuente-titulos); font-size: 1.8rem; font-weight: 600; color: var(--color-titulos); margin-bottom: 30px; }
+        p.intro-text { font-size: 1.1rem; line-height: 1.8; max-width: 600px; margin: 0 auto 40px auto; }
+        
+        /* --- CUENTA REGRESIVA Y CALENDARIO --- */
+        .countdown-container { border: 1px solid #e0e0e0; border-radius: 8px; padding: 30px; max-width: 600px; margin: 40px auto; background: rgba(255,255,255,0.5); }
+        #countdown { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+        .time-box span { font-size: 3rem; font-weight: 500; color:var(--color-titulos) }
+        .time-box small { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .calendar { width: 100%; border-collapse: collapse; }
+        .calendar th, .calendar td { padding: 10px; text-align: center; }
+        .calendar th { font-weight: 500; }
+        .calendar td { position: relative; }
+        .heart { position: relative; width: 40px; height: 40px; margin: 0 auto; display: flex; justify-content: center; align-items: center; animation: heartbeat 1.5s ease-in-out infinite; }
+        .heart::before, .heart::after { content: ""; position: absolute; top: 0; width: 20px; height: 32px; background: var(--color-acento); border-radius: 20px 20px 0 0; }
+        .heart::before { left: 20px; transform: rotate(-45deg); transform-origin: 0 100%; }
+        .heart::after { left: 0; transform: rotate(45deg); transform-origin: 100% 100%; }
+        .heart span { color: white; z-index: 1; font-weight: 700; }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        
+        /* --- UBICACIONES --- */
+        .ubicacion-container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px;
+            text-align: left; 
+            max-width: 750px; 
+            margin: 50px auto 0 auto;
+        }
+        .ubicacion-card { 
+            background-color: #fff; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            border-radius: 8px; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .ubicacion-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block; 
+            cursor: pointer;
+            transition: opacity 0.3s ease-out;
+        }
+        .ubicacion-info { 
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .ubicacion-info h4 { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight: 600; margin: 0 0 10px 0; }
+        .ubicacion-botones {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+        .ubicacion-botones a { display: inline-block; text-decoration: none; padding: 10px 15px; border-radius: 5px; margin-right: 10px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; }
+        .btn-principal { background-color: var(--color-acento); color: white; }
+        .btn-principal:hover { filter: brightness(1.1); }
+        .btn-secundario { background-color: #f0f0f0; color: var(--color-texto); }
+        .btn-secundario:hover { background-color: #e0e0e0; }
+
+        /* --- DRESS CODE --- */
+        .dress-code-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .dress-code-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 280px; }
+        .dress-code-card h4 { font-family: var(--fuente-titulos); font-size: 1.5rem; font-weight:600; margin-top: 0; }
+        .dress-code-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: opacity 0.4s ease; }
+        
+        /* --- ITINERARIO --- */
+        .itinerario-lista { list-style: none; padding: 0; max-width: 500px; margin: 40px auto; text-align: left; }
+        .itinerario-item { display: flex; align-items: center; border-bottom: 1px solid #eee; padding: 15px 0; }
+        .itinerario-item .hora { font-weight: 700; color: var(--color-acento); width: 100px; }
+
+        /* --- BOTÓN DE CONFIRMACIÓN --- */
+        .boton-confirmar { display: inline-block; text-decoration: none; padding: 14px 40px; border: 2px solid var(--color-acento); color: var(--color-acento); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; }
+        .boton-confirmar:hover { background-color: var(--color-acento); color: white; transform: translateY(-3px); }
+
+        /* --- SOBRE DE REGALO ANIMADO --- */
+        .regalo-sobre-container {
+            margin-top: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .regalo-sobre-container .fa-envelope {
+            font-size: 4rem;
+            color: var(--color-acento);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) { 
+            #hero h1 { font-size: 5rem; } 
+            #main-content { padding: 60px 5%; } 
+            .ubicacion-container { grid-template-columns: 1fr; } 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla-nombre" class="pantalla-inicial">
+        <div class="contenido-nombre">
+            <h2>Bienvenido/a</h2>
+            <input type="text" id="nombre-invitado-input" placeholder="Escribe tu nombre aquí">
+            <br>
+            <button id="boton-siguiente">Siguiente</button>
+        </div>
+    </div>
+
+    <div id="pantalla-sobre" class="pantalla-inicial">
+        <div class="contenido-sobre">
+            <div class="icono-sobre"><i class="fa-regular fa-envelope-open"></i></div>
+            <p id="mensaje-personalizado">Una invitación para ti</p>
+            <small>Toca para abrir</small>
+        </div>
+    </div>
+    
+    <div id="main-content">
+        <header id="hero">
+            <p class="hero-text hero-text-1">Mis XV Años</p>
+            <h1 class="hero-text hero-text-2">Mariana</h1>
+            <p class="hero-text hero-text-3">09 de Agosto de 2025</p>
+            <a href="#intro" class="boton-ver">VER INVITACIÓN</a>
+        </header>
+
+        <main>
+            <section class="seccion" id="intro">
+                <h2>Un Sueño Hecho Realidad</h2>
+                <p class="intro-text">
+                    "Con la bendición de Dios y en compañía de mis padres"<br>
+                    <b>[Nombre del Padre] & [Nombre de la Madre]</b><br><br>
+                    Tengo el honor de invitarlos a la celebración de mis quince años.
+                </p>
+                <div class="countdown-container">
+                    <div id="countdown">
+                        <div class="time-box"><span id="dias">0</span><small>Días</small></div>
+                        <div class="time-box"><span id="horas">0</span><small>Horas</small></div>
+                        <div class="time-box"><span id="minutos">0</span><small>Minutos</small></div>
+                        <div class="time-box"><span id="segundos">0</span><small>Segundos</small></div>
+                    </div>
+                    <table class="calendar">
+                        <thead><tr><th colspan="7">AGOSTO 2025</th></tr></thead>
+                        <tbody>
+                            <tr><th>Do</th><th>Lu</th><th>Ma</th><th>Mi</th><th>Ju</th><th>Vi</th><th>Sa</th></tr>
+                            <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                            <tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td><div class="heart"><span>9</span></div></td></tr>
+                            <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                            <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                            <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+                            <tr><td>31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="seccion" id="ubicaciones">
+                <h2>Los Lugares</h2>
+                <h3>Donde la Magia Sucederá</h3>
+                <div class="ubicacion-container">
+                    <div class="ubicacion-card">
+                        <img src="foto-iglesia-vertical.jpg" alt="Iglesia" id="iglesia-imagen">
+                        <div class="ubicacion-info">
+                            <h4><i class="fas fa-church" style="color:var(--color-acento);"></i> Ceremonia</h4>
+                            <p>Parroquia de Santuario, Antioquia</p>
+                            <div class="ubicacion-botones">
+                                <a href="#" class="btn-principal" target="_blank" id="cal-ceremonia">Agendar</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Parroquia+Nuestra+Señora+de+Chiquinquirá,+Santuario,+Antioquia" target="_blank" class="btn-secundario">Cómo llegar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ubicacion-card">
+                        <img src="foto-salon-vertical.jpg" alt="Salón de Eventos" id="salon-imagen">
+                        <div class="ubicacion-info">
+                            <h4><i class="fas fa-martini-glass-citrus" style="color:var(--color-acento);"></i> Recepción</h4>
+                            <p>Salón de Eventos La Colina, Santuario</p>
+                            <div class="ubicacion-botones">
+                                <a href="#" class="btn-principal" target="_blank" id="cal-fiesta">Agendar</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Salón+de+Eventos+La+Colina,+Santuario,+Antioquia" target="_blank" class="btn-secundario">Cómo llegar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="seccion" id="itinerario">
+                <h2>Itinerario</h2>
+                <h3>Nuestra Noche</h3>
+                <ul class="itinerario-lista">
+                    <li class="itinerario-item"><span class="hora">6:30 PM</span><span class="evento">Ceremonia Religiosa</span></li>
+                    <li class="itinerario-item"><span class="hora">8:00 PM</span><span class="evento">Recepción y Cóctel</span></li>
+                    <li class="itinerario-item"><span class="hora">9:00 PM</span><span class="evento">Cena</span></li>
+                    <li class="itinerario-item"><span class="hora">10:00 PM</span><span class="evento">Vals y Brindis</span></li>
+                    <li class="itinerario-item"><span class="hora">10:30 PM</span><span class="evento">¡Que empiece la fiesta!</span></li>
+                </ul>
+            </section>
+
+            <section class="seccion" id="info-adicional">
+                <h2>Información Adicional</h2>
+                <div class="dress-code-container">
+                    <div class="dress-code-card">
+                        <h4><i class="fa-solid fa-person-dress" style="color: var(--color-acento);"></i> Mujeres</h4>
+                        <img src="mujer1.jpg" id="female-dress-code-img" alt="Vestimenta Femenina">
+                        <small>Haz clic en la imagen para ver más</small>
+                    </div>
+                    <div class="dress-code-card">
+                        <h4><i class="fa-solid fa-user-tie" style="color: var(--color-acento);"></i> Hombres</h4>
+                        <img src="hombre1.jpg" id="male-dress-code-img" alt="Vestimenta Masculina">
+                        <small>Haz clic en la imagen para ver más</small>
+                    </div>
+                </div>
+                <h3 style="margin-top: 50px;">Regalo</h3>
+                <p class="intro-text">
+                    Tu presencia es mi mejor regalo. Si deseas tener un detalle, puedes hacerlo en nuestra "Lluvia de Sobres".
+                </p>
+                <div class="regalo-sobre-container">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+            </section>
+
+            <section class="seccion" id="confirmacion">
+                <h2>¿Me Acompañas?</h2>
+                <h3>Confirma tu Asistencia</h3>
+                <a href="#" class="boton-confirmar" id="boton-confirmar">CONFIRMAR ASISTENCIA</a>
+            </section>
+        </main>
+    </div>
+
+    <audio id="background-music" src="https://www.youtube.com/watch?v=-MhMerrJTcA" loop preload="auto"></audio>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const pantallaNombre = document.getElementById('pantalla-nombre');
+        const pantallaSobre = document.getElementById('pantalla-sobre');
+        const mainContent = document.getElementById('main-content');
+        const heroSection = document.getElementById('hero');
+        const botonSiguiente = document.getElementById('boton-siguiente');
+        const inputNombre = document.getElementById('nombre-invitado-input');
+        const mensajePersonalizado = document.getElementById('mensaje-personalizado');
+        const backgroundMusic = document.getElementById('background-music');
+        const iglesiaImagen = document.getElementById('iglesia-imagen');
+        const salonImagen = document.getElementById('salon-imagen');
+        const femaleImgElement = document.getElementById('female-dress-code-img');
+        const maleImgElement = document.getElementById('male-dress-code-img');
+
+        botonSiguiente.addEventListener('click', () => {
+            const nombreInvitado = inputNombre.value.trim();
+            if (nombreInvitado) {
+                mensajePersonalizado.textContent = `Para: ${nombreInvitado}`;
+            }
+            
+            pantallaNombre.style.opacity = '0';
+            setTimeout(() => {
+                pantallaNombre.style.display = 'none';
+                pantallaSobre.style.display = 'flex'; 
+            }, 1200);
+        });
+
+        pantallaSobre.addEventListener('click', () => {
+            pantallaSobre.style.opacity = '0';
+            backgroundMusic.play().catch(error => {
+                console.log("La reproducción automática fue bloqueada por el navegador.");
+            });
+            setTimeout(() => {
+                pantallaSobre.style.display = 'none';
+                mainContent.style.display = 'block';
+                document.body.style.overflowY = 'auto'; 
+                heroSection.classList.add('animate'); 
+                document.querySelector('#intro').classList.add('visible');
+            }, 1200);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.seccion').forEach(section => {
+            if (section.id !== 'intro') {
+                observer.observe(section);
+            }
+        });
+
+        const targetDate = new Date('2025-08-09T18:30:00').getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('dias').innerText = days > 0 ? days : 0;
+            document.getElementById('horas').innerText = hours > 0 ? hours : 0;
+            document.getElementById('minutos').innerText = minutes > 0 ? minutes : 0;
+            document.getElementById('segundos').innerText = seconds > 0 ? seconds : 0;
+        }, 1000);
+
+        function setupImageCarousel(element, images) {
+            if (!element) return;
+            let currentIndex = 0;
+            element.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                element.style.opacity = '0.7';
+                setTimeout(() => {
+                    element.src = images[currentIndex];
+                    element.style.opacity = '1';
+                }, 300);
+            });
+        }
+
+        const iglesiaImagenes = ['foto-iglesia-vertical.jpg', 'iglesia2-vertical.jpg', 'iglesia3-vertical.jpg'];
+        const salonImagenes = ['foto-salon-vertical.jpg', 'salon2-vertical.jpg', 'salon3-vertical.jpg'];
+        const femaleImages = ['mujer1.jpg', 'mujer2.jpg', 'mujer3.jpg'];
+        const maleImages = ['hombre1.jpg', 'hombre2.jpg', 'hombre3.jpg'];
+        
+        setupImageCarousel(iglesiaImagen, iglesiaImagenes);
+        setupImageCarousel(salonImagen, salonImagenes);
+        setupImageCarousel(femaleImgElement, femaleImages);
+        setupImageCarousel(maleImgElement, maleImages);
+
+        document.getElementById('cal-ceremonia').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Ceremonia XV Mariana")}&dates=20250809T183000/20250809T193000&location=${encodeURIComponent("Parroquia de Santuario, Antioquia")}`;
+        document.getElementById('cal-fiesta').href = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent("Fiesta XV Mariana")}&dates=20250809T200000/20250810T030000&location=${encodeURIComponent("Salón de Eventos La Colina, Santuario")}`;
+        document.getElementById('boton-confirmar').addEventListener('click', (e) => { e.preventDefault(); alert('CONFIRMACIÓN: Aquí se debe enlazar a un formulario de Google o un chat de WhatsApp.'); });
+    });
+    </script>
+</body>
+</html>
